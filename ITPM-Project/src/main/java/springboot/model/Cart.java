@@ -9,7 +9,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table (name = "cart_items")
-public class cartModel {
+public class Cart {
 	
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
@@ -31,8 +31,8 @@ public class cartModel {
 	private float itemPrice;
 	
 	
-	public cartModel() {}
-	public cartModel(String itmeName, String itemDescription, String itemSize, String itemColour, float itemPrice) {
+	public Cart() {}
+	public Cart(String itmeName, String itemDescription, String itemSize, String itemColour, float itemPrice) {
 		super();
 		this.itmeName = itmeName;
 		this.itemDescription = itemDescription;
