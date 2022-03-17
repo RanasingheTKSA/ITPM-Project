@@ -7,19 +7,19 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import springboot.model.cartModel;
-import springboot.repository.cartRepository;
+import springboot.model.Cart;
+import springboot.repository.CartRepository;
 
 @RestController
 @RequestMapping ("/api/v1/")
-public class cartController {
+public class CartController {
 
 	@Autowired
-	private  cartRepository cartrepository;
+	private  CartRepository cartrepository;
 	
 	// get all cart items
 	@GetMapping ("cartModels")
-	public List<cartModel> getAllcaCartModels(){
+	public List<Cart> getAllcaCartModels(){
 		return cartrepository.findAll();
 	}
 }
