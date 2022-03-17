@@ -23,5 +23,6 @@ public class CartController {
 	@GetMapping ("cartModels")
 	public List<Cart> getAllcaCartModels(){
 		return cartrepository.findAll();
+		
 	}
 }
