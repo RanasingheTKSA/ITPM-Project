@@ -29,7 +29,7 @@ public class CartController {
 	
 	// get all cart items
 	@GetMapping ("cartModels")
-	public List<Cart> getAllcaCartModels(){
+	public List<Cart> getAllCartModels(){
 		return cartrepository.findAll();
 	}
 	
