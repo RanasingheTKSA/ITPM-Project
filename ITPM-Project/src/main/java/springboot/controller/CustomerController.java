@@ -20,7 +20,7 @@ public class CustomerController {
 
 	@Autowired
 	private CustomerRepository customerRepository;
-	
+	//sample
 	//get all customers
 	@GetMapping("/customer")
 	public List<Customer> getAllCustomer(){
