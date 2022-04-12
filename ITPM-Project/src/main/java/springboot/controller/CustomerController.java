@@ -17,7 +17,6 @@ import springboot.repository.CustomerRepository;
 @RestController
 @RequestMapping ("/api/v1/")
 
-
 public class CustomerController {
 
 	@Autowired
