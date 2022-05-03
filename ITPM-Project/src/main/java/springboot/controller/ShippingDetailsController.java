@@ -55,6 +55,7 @@ public class ShippingDetailsController {
 		
 		shippingDetails.setOwnerName(update_shipping_details.getOwnerName());
 		shippingDetails.setPhoneNumber(update_shipping_details.getPhoneNumber());
+		shippingDetails.setEmail(update_shipping_details.getEmail());
 		shippingDetails.setShippingAddress(update_shipping_details.getShippingAddress());
 		shippingDetails.setZipCode(update_shipping_details.getZipCode());
 		
