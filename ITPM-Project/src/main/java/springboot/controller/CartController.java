@@ -1,8 +1,14 @@
 package springboot.controller;
 
+import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -13,10 +19,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-
+import com.lowagie.text.DocumentException;
 
 import springboot.exception.ResourceNotFoundException;
 import springboot.model.Cart;
+import springboot.model.CartPDFExporter;
 import springboot.repository.CartRepository;
 
 @CrossOrigin(origins = "http://localhost:3000")
@@ -43,5 +50,22 @@ public class CartController {
 		Map<String , Boolean> response = new HashMap<>();
 		response.put("Deleted", Boolean.TRUE);
 		return ResponseEntity.ok(response);
+	}
+
+	// generate pdf
+	@GetMapping("/cardDetails/export/pdf")
+	public void exportToPDF (HttpServletResponse response) throws DocumentException, IOException {
+		response.setContentType("application/pdf");
+		DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd");
+		String currentDateTime = dateFormatter.format(new Date());
+		
+		String headerKey = "Content-Disposition";
+		String headerValue = "attachment; filename= item_list_" + currentDateTime + ".pdf";
+		response.setHeader(headerKey, headerValue);
+		
+		List<Cart> cartItemList = getAllCartModels();
+		CartPDFExporter expoter = new CartPDFExporter(cartItemList);
+		expoter.export(response);
+		
 	}
 }

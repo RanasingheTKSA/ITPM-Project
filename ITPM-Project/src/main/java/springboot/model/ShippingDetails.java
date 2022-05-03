@@ -21,6 +21,9 @@ public class ShippingDetails {
 	@Column (name = "Phone_Number")
 	private String phoneNumber;
 	
+	@Column (name = "Email")
+	private String email;
+	
 	@Column (name = "Shipping_Address")
 	private String shippingAddress;
 	
@@ -31,10 +34,11 @@ public class ShippingDetails {
 		
 	}
 
-	public ShippingDetails(String ownerName, String phoneNumber, String shippingAddress, String zipCode) {
+	public ShippingDetails(String ownerName, String phoneNumber,String email, String shippingAddress, String zipCode) {
 		super();
 		this.ownerName = ownerName;
 		this.phoneNumber = phoneNumber;
+		this.email = email;
 		this.shippingAddress = shippingAddress;
 		this.zipCode = zipCode;
 	}
@@ -61,6 +65,14 @@ public class ShippingDetails {
 
 	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public String getShippingAddress() {

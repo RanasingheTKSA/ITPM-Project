@@ -37,7 +37,7 @@ public class ShippingDetailsController {
 		return shippingDetailsRepository.save(shippingDetails);
 	}
 	
-	//get shipping details
+	//get shipping details by rest api
 	@GetMapping("/shippingDetails/{id}")
 	public ResponseEntity<ShippingDetails> getShippingDetailsById(@PathVariable Long id){
 		ShippingDetails shippingDetails = shippingDetailsRepository.findById(id)
@@ -46,7 +46,7 @@ public class ShippingDetailsController {
 		return ResponseEntity.ok(shippingDetails);
 	}
 	
-	//update shipping details
+	//update shipping details by rest api
 	@PutMapping ("/shippingDetails/{id}")
 	public ResponseEntity<ShippingDetails> updatShippingDetails (@PathVariable Long id, @RequestBody ShippingDetails update_shipping_details){
 		
@@ -55,6 +55,7 @@ public class ShippingDetailsController {
 		
 		shippingDetails.setOwnerName(update_shipping_details.getOwnerName());
 		shippingDetails.setPhoneNumber(update_shipping_details.getPhoneNumber());
+		shippingDetails.setEmail(update_shipping_details.getEmail());
 		shippingDetails.setShippingAddress(update_shipping_details.getShippingAddress());
 		shippingDetails.setZipCode(update_shipping_details.getZipCode());
 		
