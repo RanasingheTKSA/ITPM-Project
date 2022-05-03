@@ -30,15 +30,19 @@ public class Cart {
 	@Column (name = "Item_Price")
 	private float itemPrice;
 	
+	@Column (name = "Image")
+	private String image;
+	
 	
 	public Cart() {}
-	public Cart(String itmeName, String itemDescription, String itemSize, String itemColour, float itemPrice) {
+	public Cart(String itmeName, String itemDescription, String itemSize, String itemColour, float itemPrice, String image) {
 		super();
 		this.itmeName = itmeName;
 		this.itemDescription = itemDescription;
 		this.itemSize = itemSize;
 		this.itemColour = itemColour;
 		this.itemPrice = itemPrice;
+		this.image = image;
 	}
 	public long getId() {
 		return id;
@@ -76,4 +80,11 @@ public class Cart {
 	public void setItemPrice(float itemPrice) {
 		this.itemPrice = itemPrice;
 	}
+	public String getImage() {
+		return image;
+	}
+	public void setImage(String image) {
+		this.image = image;
+	}
+	
 }
