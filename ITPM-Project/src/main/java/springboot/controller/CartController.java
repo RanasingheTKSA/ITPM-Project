@@ -1,5 +1,6 @@
 package springboot.controller;
 
+import java.io.File;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -8,10 +9,16 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.mail.MessagingException;
+import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.FileSystemResource;
 import org.springframework.http.ResponseEntity;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -52,7 +59,7 @@ public class CartController {
 		return ResponseEntity.ok(response);
 	}
 
-	// generate pdf
+	// generate PDF
 	@GetMapping("/cardDetails/export/pdf")
 	public void exportToPDF (HttpServletResponse response) throws DocumentException, IOException {
 		response.setContentType("application/pdf");
@@ -65,7 +72,27 @@ public class CartController {
 		
 		List<Cart> cartItemList = getAllCartModels();
 		CartPDFExporter expoter = new CartPDFExporter(cartItemList);
-		expoter.export(response);
-		
+		expoter.export(response);	
 	}
+	
+	//send an email
+	@Autowired
+	private JavaMailSender mailSender;
+	
+	public void sendEmailWithAttachment (String toEmail, String body, String subject, String attachment) throws MessagingException {
+		MimeMessage mimeMessage = mailSender.createMimeMessage();
+		
+		MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage, true);
+		
+		mimeMessageHelper.setFrom("thegamer1998.13@gmail.com");
+		mimeMessageHelper.setTo(toEmail);
+		mimeMessageHelper.setText(body);
+		mimeMessageHelper.setSubject(subject);
+
+		FileSystemResource fileSystem = new FileSystemResource(new File(attachment));
+		mimeMessageHelper.addAttachment(fileSystem.getFilename(), fileSystem);
+		
+		mailSender.send(mimeMessage);
+		System.out.println("Email send with attachment");
+	} 
 }
