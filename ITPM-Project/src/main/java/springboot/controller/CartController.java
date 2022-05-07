@@ -76,23 +76,23 @@ public class CartController {
 	}
 	
 	//send an email
-	@Autowired
-	private JavaMailSender mailSender;
-	
-	public void sendEmailWithAttachment (String toEmail, String body, String subject, String attachment) throws MessagingException {
-		MimeMessage mimeMessage = mailSender.createMimeMessage();
-		
-		MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage, true);
-		
-		mimeMessageHelper.setFrom("thegamer1998.13@gmail.com");
-		mimeMessageHelper.setTo(toEmail);
-		mimeMessageHelper.setText(body);
-		mimeMessageHelper.setSubject(subject);
-
-		FileSystemResource fileSystem = new FileSystemResource(new File(attachment));
-		mimeMessageHelper.addAttachment(fileSystem.getFilename(), fileSystem);
-		
-		mailSender.send(mimeMessage);
-		System.out.println("Email send with attachment");
-	} 
+//	@Autowired
+//	private JavaMailSender mailSender;
+//	
+//	public void sendEmailWithAttachment (String toEmail, String body, String subject, String attachment) throws MessagingException {
+//		MimeMessage mimeMessage = mailSender.createMimeMessage();
+//		
+//		MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage, true);
+//		
+//		mimeMessageHelper.setFrom("thegamer1998.13@gmail.com");
+//		mimeMessageHelper.setTo(toEmail);
+//		mimeMessageHelper.setText(body);
+//		mimeMessageHelper.setSubject(subject);
+//
+//		FileSystemResource fileSystem = new FileSystemResource(new File(attachment));
+//		mimeMessageHelper.addAttachment(fileSystem.getFilename(), fileSystem);
+//		
+//		mailSender.send(mimeMessage);
+//		System.out.println("Email send with attachment");
+//	} 
 }

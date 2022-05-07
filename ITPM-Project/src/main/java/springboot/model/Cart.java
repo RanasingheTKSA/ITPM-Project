@@ -1,5 +1,7 @@
 package springboot.model;
 
+import java.io.File;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -31,11 +33,11 @@ public class Cart {
 	private float itemPrice;
 	
 	@Column (name = "Image")
-	private String image;
+	private File image;
 	
 	
 	public Cart() {}
-	public Cart(String itmeName, String itemDescription, String itemSize, String itemColour, float itemPrice, String image) {
+	public Cart(String itmeName, String itemDescription, String itemSize, String itemColour, float itemPrice, File image) {
 		super();
 		this.itmeName = itmeName;
 		this.itemDescription = itemDescription;
@@ -80,10 +82,10 @@ public class Cart {
 	public void setItemPrice(float itemPrice) {
 		this.itemPrice = itemPrice;
 	}
-	public String getImage() {
+	public File getImage() {
 		return image;
 	}
-	public void setImage(String image) {
+	public void setImage(File image) {
 		this.image = image;
 	}
 	
