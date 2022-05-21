@@ -104,8 +104,4 @@ public class Admin {
 		this.email = email;
 	}
 	
-	
-	
-	
-
 }
