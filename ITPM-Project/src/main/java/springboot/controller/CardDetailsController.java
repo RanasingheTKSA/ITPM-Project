@@ -4,13 +4,16 @@ import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -65,11 +68,25 @@ public class CardDetailsController {
 		
 		cardDetails.setCardHolderName(card_deatils.getCardHolderName());
 		cardDetails.setCardNumber(card_deatils.getCardNumber());
-		cardDetails.setExpirationDate(card_deatils.getExpirationDate());
+		cardDetails.setDate(card_deatils.getDate());
+		cardDetails.setCvv(card_deatils.getCvv());
+//		cardDetails.setExpirationDate(card_deatils.getExpirationDate());
 		
 		CardDetails CARD_DETAILS = carddetailsrepository.save(cardDetails);
 		return ResponseEntity.ok(CARD_DETAILS);
 	}
 	
+	//delete card details
+	@DeleteMapping ("/cardDetails/{id}")
+	public ResponseEntity<Map<String, Boolean>> deleteCardDetails (@PathVariable Long id){
+		CardDetails cardDetails = carddetailsrepository.findById(id)
+				.orElseThrow(() -> new ResourceNotFoundException("Card details not exiting : " +id));
+		
+		carddetailsrepository.delete(cardDetails);
+		Map<String, Boolean> response = new HashMap<>();
+		response.put("Deleted", Boolean.TRUE);
+		return ResponseEntity.ok(response);
+
+	}
 	
 }

@@ -1,10 +1,13 @@
 package springboot.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -61,5 +64,17 @@ public class ShippingDetailsController {
 		
 		ShippingDetails shipping_details = shippingDetailsRepository.save(shippingDetails);
 		return ResponseEntity.ok(shipping_details);
+	}
+	
+	//delete added shpping addrress 
+	@DeleteMapping ("/shippingDetails/{id}")
+	public ResponseEntity <Map<String, Boolean>> deleteShippingDetails (@PathVariable Long id){
+		ShippingDetails shippingDetails = shippingDetailsRepository.findById(id)
+				.orElseThrow(() -> new ResourceNotFoundException("Shipping Items not existing with id:  " +id));
+		
+		shippingDetailsRepository.delete(shippingDetails);
+		Map<String, Boolean> response = new HashMap<>();
+		response.put("Deleted", Boolean.TRUE);
+		return ResponseEntity.ok(response);
 	}
 }

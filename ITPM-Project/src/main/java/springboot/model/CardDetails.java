@@ -23,15 +23,23 @@ public class CardDetails {
 	@Column (name = "Card_Number")
 	private String cardNumber;
 	
-	@Column (name = "Expiration_Date")
-	private Date expirationDate;
+	@Column (name = "Date")
+	private String date; 
 	
+	@Column (name = "CVV")
+	private String cvv;
+	
+//	@Column (name = "Expiration_Date")
+//	private Date expirationDate;
+//	
 	public CardDetails() {}
-	public CardDetails(String cardHolderName, String cardNumber, Date expirationDate) {
+	public CardDetails(String cardHolderName, String cardNumber, String date, String cvv, Date expirationDate) {
 		super();
 		this.cardHolderName = cardHolderName;
 		this.cardNumber = cardNumber;
-		this.expirationDate = expirationDate;
+		this.date = date;
+		this.cvv = cvv;
+//		this.expirationDate = expirationDate;
 	}
 
 	public long getId() {
@@ -57,14 +65,27 @@ public class CardDetails {
 	public void setCardNumber(String cardNumber) {
 		this.cardNumber = cardNumber;
 	}
-
-	public Date getExpirationDate() {
-		return expirationDate;
+	
+	public String getDate() {
+		return date;
 	}
-
-	public void setExpirationDate(Date expirationDate) {
-		this.expirationDate = expirationDate;
+	public void setDate(String date) {
+		this.date = date;
 	}
+		
+	public String getCvv() {
+		return cvv;
+	}
+	public void setCvv(String cvv) {
+		this.cvv = cvv;
+	}
+//	public Date getExpirationDate() {
+//		return expirationDate;
+//	}
+//
+//	public void setExpirationDate(Date expirationDate) {
+//		this.expirationDate = expirationDate;
+//	}
 	
 	
 }

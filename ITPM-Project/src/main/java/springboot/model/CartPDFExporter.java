@@ -30,19 +30,19 @@ public class CartPDFExporter {
 		Font font = FontFactory.getFont(FontFactory.HELVETICA);
 		font.setColor(Color.WHITE);
 		
-		cell.setPhrase(new Phrase("Item Name", font));
+		cell.setPhrase(new Phrase("ITEM NAME", font));
 		table.addCell(cell);
 		
-		cell.setPhrase(new Phrase("Item Description", font));
+		cell.setPhrase(new Phrase("ITEM DESCRIPTION", font));
 		table.addCell(cell);
 		
-		cell.setPhrase(new Phrase("Item Size", font));
+		cell.setPhrase(new Phrase("ITEM SIZE", font));
 		table.addCell(cell);
 		
-		cell.setPhrase(new Phrase("Item Colour", font));
+		cell.setPhrase(new Phrase("ITEM COLOUR", font));
 		table.addCell(cell);
 		
-		cell.setPhrase(new Phrase("Item Price", font));
+		cell.setPhrase(new Phrase("ITEM PRICE", font));
 		table.addCell(cell);
 	}
 	private void writeTableData(PdfPTable table) {
@@ -64,13 +64,13 @@ public class CartPDFExporter {
 		font.setSize(18);
 		font.setColor(Color.BLUE);
 		
-		Paragraph p = new Paragraph(" List of the Items", font);
+		Paragraph p = new Paragraph(" LIST OF THE ITEMS", font);
 		p.setAlignment(Paragraph.ALIGN_CENTER);
 		
 		document.add(p);
 		PdfPTable table = new PdfPTable(5);
 		table.setWidthPercentage(100f);
-		table.setWidths(new float[] {1.5f, 3.5f, 3.0f, 3.0f, 1.5f});
+		table.setWidths(new float[] {2.0f, 3.5f, 1.5f, 2.2f, 1.8f});
 		table.setSpacingBefore(10);
 		
 		writeTableHeader(table);
